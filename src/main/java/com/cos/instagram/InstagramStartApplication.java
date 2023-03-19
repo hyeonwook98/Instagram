@@ -1,13 +1,13 @@
-package com.cos.photogramstart;
+package com.cos.instagram;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PhotogramStartApplication {
+public class InstagramStartApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PhotogramStartApplication.class, args);
+		SpringApplication.run(InstagramStartApplication.class, args);
 	}
 
 }

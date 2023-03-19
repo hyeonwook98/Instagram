@@ -1,9 +1,8 @@
-package com.cos.photogramstart;
+package com.cos.instagram;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@Controller
+//@Controller
 public class ViewControllerTest {
 
 	@GetMapping("/auth/signup")
