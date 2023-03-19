@@ -21,11 +21,14 @@ public class User {
 
     @Column(length = 30, unique = true)
     private String username;
+    @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
     private String name;
     private String website;
     private String bio;
+    @Column(nullable = false)
     private String email;
     private String phone;
     private String gender;

@@ -4,12 +4,16 @@ import com.cos.instagram.domain.user.User;
 import com.cos.instagram.service.AuthService;
 import com.cos.instagram.web.dto.auth.SignupDto;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@Slf4j
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
+
 @RequiredArgsConstructor
 @Controller
 public class AuthController {
@@ -27,7 +31,16 @@ public class AuthController {
     }
 
     @PostMapping("/auth/signup")
-    public String signup(SignupDto signupDto) {
+    public String signup(@Valid SignupDto signupDto, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            Map<String, String> errorMap = new HashMap<>();
+
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                errorMap.put(error.getField(), error.getDefaultMessage());
+            }
+        }
+
         User user = signupDto.toEntity();
         User userEntity = authService.회원가입(user);
         return "auth/signin";
