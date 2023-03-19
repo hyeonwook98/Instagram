@@ -1,6 +1,7 @@
 package com.cos.instagram.handler;
 
 import com.cos.instagram.handler.ex.CustomValidationException;
+import com.cos.instagram.util.Script;
 import com.cos.instagram.web.dto.CMRespDto;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,7 +15,7 @@ import java.util.Map;
 public class ControllerExceptionHanlder {
 
     @ExceptionHandler(CustomValidationException.class)
-    public CMRespDto<?> validationException(CustomValidationException e) {
-        return new CMRespDto<Map<String, String>>(-1, e.getMessage(), e.getErrorMap());
+    public String validationException(CustomValidationException e) {
+        return Script.back(e.getErrorMap().toString());
     }
 }
