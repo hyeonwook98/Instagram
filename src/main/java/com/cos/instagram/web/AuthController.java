@@ -1,6 +1,7 @@
 package com.cos.instagram.web;
 
 import com.cos.instagram.domain.user.User;
+import com.cos.instagram.handler.ex.CustomValidationException;
 import com.cos.instagram.service.AuthService;
 import com.cos.instagram.web.dto.auth.SignupDto;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,7 @@ public class AuthController {
     }
 
     @PostMapping("/auth/signup")
-    public @ResponseBody String signup(@Valid SignupDto signupDto, BindingResult bindingResult) {
+    public String signup(@Valid SignupDto signupDto, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             Map<String, String> errorMap = new HashMap<>();
@@ -40,7 +41,7 @@ public class AuthController {
             for (FieldError error : bindingResult.getFieldErrors()) {
                 errorMap.put(error.getField(), error.getDefaultMessage());
             }
-            return "오류남";
+            throw new CustomValidationException("유효성 검사 실패", errorMap);
         } else {
             User user = signupDto.toEntity();
             User userEntity = authService.회원가입(user);
