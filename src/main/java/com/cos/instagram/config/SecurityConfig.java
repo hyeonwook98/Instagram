@@ -24,6 +24,7 @@ public class SecurityConfig {
                 .and()
                 .formLogin()
                 .loginPage("/auth/signin")
+                .loginProcessingUrl("/auth/signin")
                 .defaultSuccessUrl("/");
         return http.build();
     }
