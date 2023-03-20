@@ -1,5 +1,6 @@
 package com.cos.instagram.handler;
 
+import com.cos.instagram.handler.ex.CustomApiException;
 import com.cos.instagram.handler.ex.CustomValidationApiException;
 import com.cos.instagram.handler.ex.CustomValidationException;
 import com.cos.instagram.util.Script;
@@ -25,5 +26,10 @@ public class ControllerExceptionHanlder {
     @ExceptionHandler(CustomValidationApiException.class)
     public ResponseEntity<CMRespDto<?>> validationApiException(CustomValidationApiException e) {
         return new ResponseEntity<>(new CMRespDto<>(-1, e.getMessage(), e.getErrorMap()),HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CustomApiException.class)
+    public ResponseEntity<CMRespDto<?>> apiException(CustomApiException e) {
+        return new ResponseEntity<>(new CMRespDto<>(-1, e.getMessage(),null),HttpStatus.BAD_REQUEST);
     }
 }
