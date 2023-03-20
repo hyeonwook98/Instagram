@@ -2,6 +2,8 @@ package com.cos.instagram.service;
 
 import com.cos.instagram.domain.user.User;
 import com.cos.instagram.domain.user.UserRepository;
+import com.cos.instagram.handler.ex.CustomValidationApiException;
+import com.cos.instagram.handler.ex.CustomValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,9 @@ public class UserService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     @Transactional
     public User 회원수정(int id, User user) {
-        User userEntity = userRepository.findById(id).get();
+        User userEntity = userRepository.findById(id).orElseThrow(() ->
+                new CustomValidationApiException("찾을 수 없는 id입니다."));
+
         userEntity.setName(user.getName());
         String rawPassword = user.getPassword();
         String encPassword = bCryptPasswordEncoder.encode(rawPassword);

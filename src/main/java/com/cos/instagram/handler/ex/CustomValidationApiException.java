@@ -14,4 +14,8 @@ public class CustomValidationApiException extends RuntimeException{
         super(message);
         this.errorMap = errorMap;
     }
+
+    public CustomValidationApiException(String message) {
+        super(message);
+    }
 }
