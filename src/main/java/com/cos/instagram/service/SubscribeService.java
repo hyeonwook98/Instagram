@@ -25,11 +25,12 @@ public class SubscribeService {
     public List<SubscribeDto> 구독리스트(int principalId, int pageUserId) {
 
         StringBuffer sb = new StringBuffer();
-        sb.append("select u.id userId, u.username, u.profileImageUrl,  ");
-        sb.append("if( (select true from subscribe where fromUserId = ? and toUserId = u.id), true, false) subscribeState, ");
-        sb.append("if(u.id = ?, true, false) equalState ");
-        sb.append("from subscribe f inner join user u on u.id = f.toUserId ");
-        sb.append("where f.fromUserId = ? ");
+        sb.append("select u.id, u.username, u.profileImageUrl, ");
+        sb.append("if( (select 1 from subscribe where fromUserId = ? and toUserId = u.id), 1, 0) subscribeState, ");
+        sb.append("if(u.id = ?, 1, 0) equalUserState ");
+        sb.append("from user u inner join subscribe s ");
+        sb.append("on u.id = s.toUserId ");
+        sb.append("where s.fromUserId = ? ");
 
         Query query = em.createNativeQuery(sb.toString())
                 .setParameter(1, principalId)

@@ -58,7 +58,7 @@ function subscribeInfoModalOpen(pageUserId) {
 	});
 }
 
-function getSubscribeModalItem() {
+function getSubscribeModalItem(u) {
 	let item=`<div class="subscribe__item" id="subscribeModalItem-${u.id}">
     <div class="subscribe__img">
         <img src="/upload/${u.profileImageUrl}" onerror="this.src='/images/person.jpeg'"/>
@@ -70,14 +70,15 @@ function getSubscribeModalItem() {
 
 	if (!u.equalUserState) {
 		if (u.subscribeState) {
-			item+=`<button class="cta blue" onclick="toggleSubscribe(${u.id},this)">구독취소</button>`;
+			item+=`<button class="cta blue" onclick="toggleSubscribe(${u.id},this)">구독취소</button>`
 		} else {
-			item+=`<button class="cta" onclick="toggleSubscribe(${u.id},this)">구독하기</button>`;
+			item+=`<button class="cta" onclick="toggleSubscribe(${u.id},this)">구독하기</button>`
 		}
 	}
 	item += `
     </div>
-</div>`
+</div>`;
+	return item;
 }
 
 
