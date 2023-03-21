@@ -1,6 +1,7 @@
 package com.cos.instagram.service;
 
 import com.cos.instagram.config.auth.PrincipalDetails;
+import com.cos.instagram.domain.image.Image;
 import com.cos.instagram.domain.image.ImageRepository;
 import com.cos.instagram.web.dto.image.ImageUploadDto;
 import lombok.RequiredArgsConstructor;
@@ -31,5 +32,8 @@ public class ImageService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        Image image = imageUploadDto.toEntity(imageFileName, principalDetails.getUser());
+        Image imageEntity = imageRepository.save(image);
     }
 }
