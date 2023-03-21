@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -21,6 +22,12 @@ public class ImageService {
     private final ImageRepository imageRepository;
     @Value("${file.path}")
     private String uploadFolder;
+
+    @Transactional(readOnly = true)
+    public List<Image> 이미지스토리(int principalId) {
+        List<Image> images = imageRepository.mStory(principalId);
+        return images;
+    }
 
     @Transactional
     public void 사진업로드(ImageUploadDto imageUploadDto, PrincipalDetails principalDetails) {
