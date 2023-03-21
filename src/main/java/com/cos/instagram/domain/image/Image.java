@@ -22,7 +22,7 @@ public class Image {
     private String caption;
     private String postImageUrl;
     @JoinColumn(name = "userId")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
     private LocalDateTime createDate;
 
@@ -30,4 +30,5 @@ public class Image {
     public void createDate() {
         this.createDate = LocalDateTime.now();
     }
+
 }
