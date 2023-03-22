@@ -24,7 +24,7 @@ public class Image {
     private String postImageUrl;
     @JsonIgnoreProperties({"images"})
     @JoinColumn(name = "userId")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
     private LocalDateTime createDate;
 
