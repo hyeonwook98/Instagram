@@ -10,7 +10,7 @@ let page = 0;
 // (1) 스토리 로드하기
 function storyLoad() {
 	$.ajax({
-		url: `/api/image/page=${page}`,
+		url: `/api/image?page=${page}`,
 		dataType: "json"
 	}).done(res=>{
 		console.log(res);
@@ -43,12 +43,19 @@ function getStoryItem(image) {
 	<div class="sl__item__contents">
 		<div class="sl__item__contents__icon">
 
-			<button>
-				<i class="fas fa-heart active" id="storyLikeIcon-${image.id}" onclick="toggleLike(${image.id})"></i>
+			<button>`;
+
+				if(image.likeState){
+					item+=`<i class="fas fa-heart active" id="storyLikeIcon-${image.id}" onclick="toggleLike(${image.id})"></i>`;
+				}else{
+					item+=`<i class="far fa-heart" id="storyLikeIcon-${image.id}" onclick="toggleLike(${image.id})"></i>`;
+				}
+			
+		item += `
 			</button>
 		</div>
 
-		<span class="like"><b id="storyLikeCount-1">3 </b>likes</span>
+		<span class="like"><b id="storyLikeCount-${image.id}">${image.likeCount} </b>likes</span>
 
 		<div class="sl__item__contents__content">
 			<p>${image.caption}</p>
