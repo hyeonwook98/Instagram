@@ -2,6 +2,7 @@ package com.cos.instagram.domain.likes;
 
 import com.cos.instagram.domain.image.Image;
 import com.cos.instagram.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,6 +32,7 @@ public class Likes {
     @JoinColumn(name = "imageId")
     @ManyToOne
     private Image image;
+    @JsonIgnoreProperties({"images"})
     @JoinColumn(name = "userId")
     @ManyToOne
     private User user;
