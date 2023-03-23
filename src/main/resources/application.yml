@@ -34,7 +34,17 @@ spring:
   security:
     user:
       name: test
-      password: 1234   
+      password: 1234
+
+    oauth2:
+      client:
+        registration:
+          facebook:
+            client-id: 245237187917059
+            client-secret: 9a7d2e1f0b76ce2a8bd8b8b760f921ae
+            scope:
+            - public_profile
+            - email
 
 file:
   path: C:/Users/hyeon/desktop/upload/
