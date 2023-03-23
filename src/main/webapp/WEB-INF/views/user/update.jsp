@@ -9,11 +9,11 @@
 	<section class="setting-container">
 		<!--프로필셋팅 아티클-->
 		<article class="setting__content">
-
 			<!--프로필셋팅 아이디영역-->
 			<div class="content-item__01">
 				<div class="item__img">
-					<img src="#" onerror="this.src='/images/person.jpeg'" />
+<%--					<img src="#" onerror="this.src='/images/person.jpg'" />--%>
+					<img src="#" onerror="this.src='/upload/${principal.user.profileImageUrl}'" />
 				</div>
 				<div class="item__username">
 					<h2>${principal.user.username}</h2>

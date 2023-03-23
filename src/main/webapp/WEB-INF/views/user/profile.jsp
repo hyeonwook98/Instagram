@@ -18,7 +18,7 @@
 				</form>
 
 				<img class="profile-image" src="/upload/${dto.user.profileImageUrl}"
-					onerror="this.src='/images/person.jpeg'" id="userProfileImage" />
+					onerror="this.src='/images/person.jpg'" id="userProfileImage" />
 			</div>
 		</div>
 		<!--유저이미지end-->
@@ -35,10 +35,10 @@
 					<c:otherwise>
 						<c:choose>
 							<c:when test="${dto.subscribeState}">
-								<button class="cta blue" onclick="toggleSubscribe(${dto.user.id}, this)">구독취소</button>
+								<button class="cta blue" onclick="toggleSubscribe(${dto.user.id}, this)">팔로우취소</button>
 							</c:when>
 							<c:otherwise>
-								<button class="cta" onclick="toggleSubscribe(${dto.user.id}, this)">구독하기</button>
+								<button class="cta" onclick="toggleSubscribe(${dto.user.id}, this)">팔로우</button>
 							</c:otherwise>
 						</c:choose>
 
@@ -54,7 +54,7 @@
 				<ul>
 					<li><a href=""> 게시물<span>${dto.imageCount}</span>
 					</a></li>
-					<li><a href="javascript:subscribeInfoModalOpen(${dto.user.id});"> 구독정보<span>${dto.subscribeCount}</span>
+					<li><a href="javascript:subscribeInfoModalOpen(${dto.user.id});"> 팔로우정보<span>${dto.subscribeCount}</span>
 					</a></li>
 				</ul>
 			</div>
@@ -122,7 +122,7 @@
 <div class="modal-subscribe">
 	<div class="subscribe">
 		<div class="subscribe-header">
-			<span>구독정보</span>
+			<span>팔로우정보</span>
 			<button onclick="modalClose()">
 				<i class="fas fa-times"></i>
 			</button>

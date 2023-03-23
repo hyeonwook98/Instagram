@@ -12,17 +12,17 @@
 
 // (1) 유저 프로파일 페이지 구독하기, 구독취소
 function toggleSubscribe(toUserId, obj) {
-	if ($(obj).text() === "구독취소") {
+	if ($(obj).text() === "팔로우취소") {
 
 		$.ajax({
 			type:"delete",
 			url:"/api/subscribe/"+ toUserId,
 			dataType:"json"
 		}).done(res=>{
-			$(obj).text("구독하기");
+			$(obj).text("팔로우");
 			$(obj).toggleClass("blue");
 		}).fail(error=>{
-			console.log("구독취소실패", error);
+			console.log("팔로우취소실패", error);
 		});
 
 	} else {
@@ -32,10 +32,10 @@ function toggleSubscribe(toUserId, obj) {
 			url:"/api/subscribe/"+ toUserId,
 			dataType:"json"
 		}).done(res=>{
-			$(obj).text("구독취소");
+			$(obj).text("팔로우취소");
 			$(obj).toggleClass("blue");
 		}).fail(error=>{
-			console.log("구독하기실패", error);
+			console.log("팔로우실패", error);
 		});
 
 	}
@@ -70,9 +70,9 @@ function getSubscribeModalItem(u) {
 
 	if (!u.equalUserState) {
 		if (u.subscribeState) {
-			item+=`<button class="cta blue" onclick="toggleSubscribe(${u.id},this)">구독취소</button>`
+			item+=`<button class="cta blue" onclick="toggleSubscribe(${u.id},this)">팔로우취소</button>`
 		} else {
-			item+=`<button class="cta" onclick="toggleSubscribe(${u.id},this)">구독하기</button>`
+			item+=`<button class="cta" onclick="toggleSubscribe(${u.id},this)">팔로우</button>`
 		}
 	}
 	item += `
