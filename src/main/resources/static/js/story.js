@@ -7,6 +7,7 @@
  (5) 댓글삭제
  */
 
+
 let principalId = $("#principalId").val();
 let page = 0;
 
